@@ -586,6 +586,19 @@ monaco.editor.create(document.getElementById('editor')!, {
 });
 ```
 
+{% details For Vite users %}
+Some dependencies are still using commonjs. Vite, in dev mode, doesn't seem to try and transform them.
+So if you are using Vite, add this to your `vite.config.ts` (create it if not yet):
+```typescript
+  optimizeDeps: {
+    include: [
+      "vscode-textmate",
+      "vscode-oniguruma"
+    ],
+  }
+```
+{% enddetails %}
+
 <!-- TOC --><a name="introducing-language-server"></a>
 ## Introducing language server
 Now, let's finally add a language server. For this one, we will need to use a cousin package of `monaco-vscode-api` called `monaco-languageclient` which actively utilizes the former.
